@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Property {
+  id          String   @id @default(cuid())
+  title       String
+  location    String
+  price       Float
+  priceLabel  String
+  type        String
+  category    String
+  area        String?
+  areaNum     Float?
+  image       String   // URL to main image
+  gallery     String[] // Array of image URLs
+  beds        Int      @default(0)
+  baths       Int      @default(0)
+  parking     Int      @default(0)
+  yearBuilt   Int?
+  featured    Boolean  @default(false)
+  description String   @db.Text
+  features    String[]
+  developer   String?
+  possession  String?
+  rera        String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
